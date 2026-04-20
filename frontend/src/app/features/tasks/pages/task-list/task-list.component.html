@@ -1,0 +1,18 @@
+<h1>Task Desk</h1>
+
+<p>Anzahl Tasks: {{ tasks.length }}</p>
+
+<p *ngIf="loading">Lade Tasks...</p>
+<p *ngIf="error">{{ error }}</p>
+
+<ul *ngIf="!loading && !error && tasks.length > 0">
+  <li *ngFor="let task of tasks">
+    <strong>{{ task.title }}</strong><br />
+    <span>{{ task.description || 'Keine Beschreibung vorhanden.' }}</span><br />
+    <small>Status: {{ task.status }}</small>
+  </li>
+</ul>
+
+<p *ngIf="!loading && !error && tasks.length === 0">
+  Keine Tasks vorhanden.
+</p>
