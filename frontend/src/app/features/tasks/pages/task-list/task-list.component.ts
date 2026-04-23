@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../../../models/task.model';
+import { RouterLink } from '@angular/router';
 
 /**
  * Diese Component repräsentiert die Task-Listen-Seite.
@@ -15,7 +16,7 @@ import { Task } from '../../../../models/task.model';
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss'
 })

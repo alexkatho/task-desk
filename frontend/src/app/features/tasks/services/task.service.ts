@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Task } from '../../../models/task.model';
+import { TaskCreateRequest } from '../../../models/task-create-request-model';
 /**
  * Der TaskService kapselt die Kommunikation mit dem Backend.
  *
@@ -50,5 +51,15 @@ export class TaskService {
   getTasks(): Observable<Task[]> {
   console.log('HTTP GET an:', this.apiUrl);
   return this.http.get<Task[]>(this.apiUrl);
+}
+
+/**
+ * Erstellt eine neue Task im Backend.
+ *
+ * Wir senden ein Create-Request-Objekt an die API
+ * und erhalten die gespeicherte Task zurück.
+ */
+createTask(task: TaskCreateRequest): Observable<Task> {
+  return this.http.post<Task>(this.apiUrl, task);
 }
 }

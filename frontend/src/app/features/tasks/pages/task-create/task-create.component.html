@@ -1,0 +1,49 @@
+<h1>Neue Task erstellen</h1>
+
+<p *ngIf="error">{{ error }}</p>
+
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="title">Titel</label><br />
+    <input id="title" type="text" formControlName="title" />
+  </div>
+
+  <div *ngIf="taskForm.controls.title.touched && taskForm.controls.title.invalid">
+    <small *ngIf="taskForm.controls.title.errors?.['required']">
+      Titel ist erforderlich.
+    </small>
+    <small *ngIf="taskForm.controls.title.errors?.['maxlength']">
+      Titel darf maximal 255 Zeichen lang sein.
+    </small>
+  </div>
+
+  <br />
+
+  <div>
+    <label for="description">Beschreibung</label><br />
+    <textarea id="description" rows="4" formControlName="description"></textarea>
+  </div>
+
+  <div *ngIf="taskForm.controls.description.touched && taskForm.controls.description.invalid">
+    <small *ngIf="taskForm.controls.description.errors?.['maxlength']">
+      Beschreibung darf maximal 1000 Zeichen lang sein.
+    </small>
+  </div>
+
+  <br />
+
+  <div>
+    <label for="status">Status</label><br />
+    <select id="status" formControlName="status">
+      <option value="TODO">TODO</option>
+      <option value="IN_PROGRESS">IN_PROGRESS</option>
+      <option value="DONE">DONE</option>
+    </select>
+  </div>
+
+  <br />
+
+  <button type="submit" [disabled]="submitting">
+    {{ submitting ? 'Speichere...' : 'Task erstellen' }}
+  </button>
+</form>
